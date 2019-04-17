@@ -42,8 +42,9 @@
 #define RUNTIME_DIR_PATH "./dotnet/runtime/"
 #define PLUGIN_DIR_PATH "./dotnet/plugins/"
 
-#define PLUGIN_NAME "AlternateLife.RageMP.Net"
-#define PLUGIN_CLASS_NAME "AlternateLife.RageMP.Net.PluginWrapper"
+#define PLUGIN_NAME "NextFramework"
+#define PLUGIN_CLASS_NAME "NextFramework.Application"
+#define PLUGIN_METHOD_NAME "Initialize"
 
 #ifdef _WIN32
 #define LIST_SEPARATOR ";"
@@ -76,7 +77,7 @@ bool ClrHost::load() {
         return false;
     }
 
-    if (_mainCallback == nullptr && getDelegate("PluginMain", (void **) &_mainCallback) == false) {
+    if (_mainCallback == nullptr && getDelegate(PLUGIN_METHOD_NAME, (void **) &_mainCallback) == false) {
         return false;
     }
 
